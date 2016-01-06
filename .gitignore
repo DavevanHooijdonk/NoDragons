@@ -17,13 +17,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# =========================
-# Operating System Files
-# =========================
-
-# OSX
-# =========================
-
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -41,3 +34,24 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Maven target folder
+*/target/**
+target/
+
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Eclipse project files
+.classpath
+.project
+.settings
+maven-eclipse.xml
+.externalToolBuilders
+.pmd
+
+# Loggers
+*.log
