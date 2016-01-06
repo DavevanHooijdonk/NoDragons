@@ -55,3 +55,7 @@ maven-eclipse.xml
 
 # Loggers
 *.log
+
+#npm
+/node/
+/node_modules/
