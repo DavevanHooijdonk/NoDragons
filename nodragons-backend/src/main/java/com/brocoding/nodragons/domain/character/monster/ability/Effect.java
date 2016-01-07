@@ -1,4 +1,4 @@
-package com.brocoding.nodragons.app.effect;
+package com.brocoding.nodragons.domain.character.monster.ability;
 
 /**
  * Created by X086353 on 1/7/2016.

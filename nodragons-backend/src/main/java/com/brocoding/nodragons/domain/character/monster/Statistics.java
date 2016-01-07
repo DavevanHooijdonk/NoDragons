@@ -1,4 +1,4 @@
-package com.brocoding.nodragons.app.character.monster.statistics;
+package com.brocoding.nodragons.domain.character.monster;
 
 /**
  * Created by X086353 on 1/7/2016.
