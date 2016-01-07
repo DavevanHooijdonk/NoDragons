@@ -1,12 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Hello Banana!</title>
-</head>
+<html ng-app="noDragons">
+<link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+
 <body>
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#/" class="navbar-brand">noDragons</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#monstercreator"><i class="glyphicon glyphicon-book"></i> Monster Creator</a></li>
+                <li><a href="#monsteroverview"><i class="glyphicon glyphicon-book"></i> Monster Overview</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
 
-<h1>Hello Banana!</h1>
+</td>
+<div>
+    <div ng-view></div>
+</div>
 
+<script src = "webjars/js/all.min.js"></script>
 </body>
 </html>
