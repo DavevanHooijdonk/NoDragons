@@ -10,7 +10,7 @@
     "type": "git",
     "url": ""
   },
-  "author": "Dave van hooijdonk",
+  "contributors": ["Dave van Hooijdonk", "Richard Dijk <microvirus.multiplying@gmail.com>"],
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.9.0",
