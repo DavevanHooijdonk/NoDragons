@@ -1,3 +1,8 @@
+<style>
+    td.monster-label {text-align: right; padding-right: 6px;}
+    td.monster-input {text-align: left}
+</style>
+
 <div class="jumbotron text-center">
     <h2>Monster Creator</h2>
 </div>
@@ -11,7 +16,7 @@
             <label>Monster Name
             </label>
             <input type="text"/>
-            <label>Monster Rank
+            <label style="margin-left: 10px">Monster Rank
             </label>
             <select class="text"/>
                 <option value="MINION"> Minion
@@ -27,36 +32,38 @@
     </fieldset>
     <fieldset class="row2">
         <legend>Monster Stats</legend>
-        <p>
-            <label>Hitpoints
-            </label>
-            <input type="number" maxlength="4"/>
-        </p>
-        <p>
-            <label>Zone of Control
-            </label>
-            <input type="number" maxlength="1"/>
-        </p>
-        <p>
-            <label>Movement Speed
-            </label>
-            <input type="number" maxlength="1"/>
-        </p>
-        <p>
-            <label>Physical Resistance
-            </label>
-            <input type="number" maxlength="3"/>
-        </p>
-        <p>
-            <label>Magical Resistance
-            </label>
-            <input type="number" maxlength="3"/>
-        </p>
-        <p>
-            <label>Mental Resistance
-            </label>
-            <input type="number" maxlength="3"/>
-        </p>
+        <table border="0">
+        <tr>
+            <td class="monster-label"><label>Hitpoints
+            </label></td>
+            <td td class="monster-input"><input type="number" maxlength="4"/></td>
+        </tr>
+        <tr>
+            <td class="monster-label"><label>Zone of Control
+            </label></td>
+            <td td class="monster-input"><input type="number" maxlength="1"/></td>
+        </tr>
+        <tr>
+            <td class="monster-label"> <label>Movement Speed
+            </label></td>
+            <td td class="monster-input"><input type="number" maxlength="1"/></td>
+        </tr>
+        <tr>
+            <td class="monster-label"><label>Physical Resistance
+            </label></td>
+            <td td class="monster-input"><input type="number" maxlength="3"/></td>
+        </tr>
+        <tr>
+            <td class="monster-label"><label>Magical Resistance
+            </label></td>
+            <td td class="monster-input"><input type="number" maxlength="3"/></td>
+        </tr>
+        <tr>
+            <td class="monster-label"><label>Mental Resistance
+            </label></td>
+            <td td class="monster-input"><input type="number" maxlength="3"/></td>
+        </tr>
+        </table>
     </fieldset>
     <fieldset class="row3">
         <legend>Passive Abilities
