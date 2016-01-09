@@ -16,7 +16,8 @@ noDragons.config(['$routeProvider', function ($routeProvider) {
             controller: 'overviewController'
         })
         .when('/monstercreator', {
-            templateUrl: 'webjars/html/pages/monster/creator.html',
+//            templateUrl: 'webjars/html/pages/monster/creator.html',
+            templateUrl: './pages/monster/creator.html',
             controller: 'creatorController'
         });
 }]);
