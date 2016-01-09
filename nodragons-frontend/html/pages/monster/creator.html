@@ -1,8 +1,16 @@
 <style type="text/css">
-    td.monster-label {text-align: right; padding-right: 6px;}
+    td.monster-label {text-align: left; padding-right: 6px;}
     td.monster-input {text-align: left;}
     input.monster-numeric {width: 6em;}
     label.input-error {color: red;}
+
+    fieldset.monster-actions {
+        margin-top: 15px;
+        text-align: right;
+        background: #f0f0f2;
+        border-top: 1px solid #c6c7cc;
+        padding: 20px;
+    }
 </style>
 
 <div class="jumbotron text-center">
@@ -16,14 +24,14 @@
         <legend>Monster Info</legend>
         <table border="0">
             <tr>
-                <td class="monster-label"><label>Monster Name</label></td>
-                <td td class="monster-input"><input type="text" name="monsterName" ng-model="monster.name" ng-required="true" ng-trim="true" size="24" required></td>
+                <td class="monster-label"><label for="mictrl-name">Monster Name</label></td>
+                <td td class="monster-input"><input type="text" name="monsterName" id="mictrl-name" ng-model="monster.name" ng-required="true" ng-trim="true" size="24" required></td>
                 <td><label class="input-error" ng-show="monsterForm.monsterName.$error.required">Name is required</label></td>
             </tr>
 
             <tr>
-                <td class="monster-label"><label style="margin-left: 10px">Monster Rank</label></td>
-                <td class="monster-input"><select class="text" ng-model="monster.rank">
+                <td class="monster-label"><label for="mictrl-rank" class="monster-label">Monster Rank</label></td>
+                <td class="monster-input"><select class="text" id="mictrl-rank" ng-model="monster.rank">
                     <option value="MINION">Minion</option>
                     <option value="BASIC">Grunt</option>
                     <option value="LIEUTENANT">Lieutenant</option>
@@ -36,34 +44,34 @@
         <legend>Monster Stats</legend>
         <table border="0">
         <tr>
-            <td class="monster-label"><label>Hitpoints</label></td>
-            <td td class="monster-input"><input type="number" class="monster-numeric" ng-model="monster.stats.maximumHitpoints" size="6" maxlength="6"/></td>
+            <td class="monster-label"><label for="mictrl-hp">Hitpoints</label></td>
+            <td td class="monster-input"><input type="number" id="mictrl-hp" class="monster-numeric" ng-model="monster.stats.maximumHitpoints" size="6" maxlength="6"/></td>
         </tr>
         <tr>
-            <td class="monster-label"><label>Zone of Control
+            <td class="monster-label"><label for="mictrl-zoc">Zone of Control
             </label></td>
-            <td td class="monster-input"><input type="number" class="monster-numeric" ng-model="monster.stats.zoneOfControl" size="6" maxlength="2"/></td>
+            <td td class="monster-input"><input type="number" id="mictrl-zoc" class="monster-numeric" ng-model="monster.stats.zoneOfControl" size="6" maxlength="2"/></td>
             <td><label class="input-error" ng-show="false">Error?</label></td>
         </tr>
         <tr>
-            <td class="monster-label"> <label>Movement Speed
+            <td class="monster-label"> <label for="mictrl-movsp">Movement Speed
             </label></td>
-            <td td class="monster-input"><input type="number" class="monster-numeric" ng-model="monster.stats.movementSpeed" size="6" maxlength="2"/></td>
+            <td td class="monster-input"><input type="number" id="mictrl-movsp" class="monster-numeric" ng-model="monster.stats.movementSpeed" size="6" maxlength="2"/></td>
         </tr>
         <tr>
-            <td class="monster-label"><label>Physical Resistance
+            <td class="monster-label"><label for="mictrl-phres">Physical Resistance
             </label></td>
-            <td td class="monster-input"><input type="number" class="monster-numeric" ng-model="monster.stats.physicalResistance" size="6" maxlength="3"/></td>
+            <td td class="monster-input"><input type="number" id="mictrl-phres" class="monster-numeric" ng-model="monster.stats.physicalResistance" size="6" maxlength="3"/></td>
         </tr>
         <tr>
-            <td class="monster-label"><label>Magical Resistance
+            <td class="monster-label"><label for="mictrl-magres">Magical Resistance
             </label></td>
-            <td td class="monster-input"><input type="number" class="monster-numeric" ng-model="monster.stats.magicalResistance" size="6" maxlength="3"/></td>
+            <td td class="monster-input"><input type="number" id="mictrl-magres" class="monster-numeric" ng-model="monster.stats.magicalResistance" size="6" maxlength="3"/></td>
         </tr>
         <tr>
-            <td class="monster-label"><label>Mental Resistance
+            <td class="monster-label"><label for="mictrl-menres">Mental Resistance
             </label></td>
-            <td td class="monster-input"><input type="number" class="monster-numeric" ng-model="monster.stats.mentalResistance" size="6" maxlength="3"/></td>
+            <td td class="monster-input"><input type="number" id="mictrl-menres" class="monster-numeric" ng-model="monster.stats.mentalResistance" size="6" maxlength="3"/></td>
         </tr>
         </table>
     </fieldset>
@@ -71,15 +79,17 @@
         <legend>Passive Abilities</legend>
         <table border="0">
         <tr ng-repeat="passive in monster.passiveAbilities">
-            <td class="monster-label"><label>Name</label></td>
-            <td class="monster-input"><input type="text" size="24" ng-model="passive.name"></td>
-            <td class="monster-label"><label style="margin-left: 16px">Effect</label></td>
-            <td class="monster-input"><input type="text" size="72" ng-model="passive.effect.effectDescription"></td>
+            <td class="monster-label"><label for="mictrl-pa-name{{$index}}">Name</label></td>
+            <td class="monster-input"><input type="text" id="mictrl-pa-name{{$index}}" size="24" ng-model="passive.name"></td>
+            <td class="monster-label"><label for="mictrl-pa-eff{{$index}}" style="margin-left: 16px">Effect</label></td>
+            <td class="monster-input"><input type="text" id="mictrl-pa-eff{{$index}}" size="72" ng-model="passive.effect.effectDescription"></td>
             <!-- TODO: Use CSS Tables to make the effect description loop around as-needed -->
         </tr>
         </table>
     </fieldset>
-    <button class="btn">Save Monster &raquo;</button>
+    <fieldset class="monster-actions">
+        <button class="btn">Save Monster &raquo;</button>
+    </fieldset>
 </form>
 </div>
 </div>
