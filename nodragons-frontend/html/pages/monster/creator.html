@@ -1,10 +1,60 @@
+<!-- TODO: Move this all into a dedicated CSS file. -->
 <style type="text/css">
+    /* Size for the monster creator form. Note: if you change this width then change effect-field. */
+    .monster-creator-form-container {width: 100%;}
+    .monster-creator-form {width: 50rem; margin: 0 auto;}
+
+    /* Labels and input for monster creator. */
     td.monster-label {text-align: left; padding-right: 6px;}
     td.monster-input {text-align: left;}
     input.monster-numeric {width: 6em;}
     label.input-error {color: red;}
 
-    fieldset.monster-actions {
+    /* Monster abilities. Grouping and formatting like a table. */
+    .monster-ability-list {
+        display: table;
+    }
+    .monster-ability-group-container, .monster-ability-group-container-alt {
+        background-color: lavender;
+        padding-bottom: 10px;
+    }
+    .monster-ability-group-container-alt
+    {
+        background-color: cornsilk;
+    }
+    .monster-ability-group-container .monster-input, .monster-ability-group-container-alt .monster-input
+    {
+        background: transparent;
+        border: 1px groove;
+    }
+    .monster-ability-group {
+        display: table-row-group;
+    }
+    .monster-ability-row {
+        display: table-row;
+    }
+    .monster-ability-cell
+    {
+        display: table-cell;
+    }
+    .monster-ability-ctrl-fill {
+        width: calc(100% - 10px);
+    }
+    /* For monster effects: divide label and input over the entire space. */
+    /* Note: these two should add up to the form width, or less. */
+    span.monster-ability-left {
+        width: 4.5rem;
+    }
+    span.monster-ability-right {
+        width: 44rem;
+    }
+    span.monster-ability-ctrl-margin
+    {
+        padding-left: 6px;
+    }
+
+    /* Monster creator controls group. */
+    fieldset.monster-controls {
         margin-top: 15px;
         text-align: right;
         background: #f0f0f2;
@@ -13,13 +63,16 @@
     }
 </style>
 
+
+
+
 <div class="jumbotron text-center">
     <h2>Monster Creator</h2>
 </div>
-<div style="width: 100%">
-<div style="width: 50%; margin: 0 auto">
-<form name="monsterForm" action="" class="register">
+<div class="monster-creator-form-container">
+<form name="monsterForm" action="" class="register monster-creator-form">
     <h1>Monster: {{monster.name}}</h1>
+
     <fieldset class="row1">
         <legend>Monster Info</legend>
         <table border="0">
@@ -40,6 +93,7 @@
             </tr>
         </table>
     </fieldset>
+
     <fieldset class="row2">
         <legend>Monster Stats</legend>
         <table border="0">
@@ -75,21 +129,30 @@
         </tr>
         </table>
     </fieldset>
+
     <fieldset class="row3">
         <legend>Passive Abilities</legend>
-        <table border="0">
-        <tr ng-repeat="passive in monster.passiveAbilities">
-            <td class="monster-label"><label for="mictrl-pa-name{{$index}}">Name</label></td>
-            <td class="monster-input"><input type="text" id="mictrl-pa-name{{$index}}" size="24" ng-model="passive.name"></td>
-            <td class="monster-label"><label for="mictrl-pa-eff{{$index}}" style="margin-left: 16px">Effect</label></td>
-            <td class="monster-input"><input type="text" id="mictrl-pa-eff{{$index}}" size="72" ng-model="passive.effect.effectDescription"></td>
-            <!-- TODO: Use CSS Tables to make the effect description loop around as-needed -->
-        </tr>
-        </table>
+        <div class="monster-ability-list">
+            <div ng-repeat="passive in monster.passiveAbilities">
+                <!-- Switch between two alternating classes to visually distinguish the abilities in the list -->
+                <div class="{{($index % 2 == 0) ? 'monster-ability-group-container' : 'monster-ability-group-container-alt'}}">
+                <div class="monster-ability-group">
+                    <div class="monster-ability-row">
+                        <span class="monster-ability-cell monster-ability-left"><label class="monster-label" for="mictrl-pa-name{{$index}}">Name</label></span>
+                        <span class="monster-ability-cell monster-ability-right"><span class="monster-ability-ctrl-margin"><input type="text" class="monster-input" id="mictrl-pa-name{{$index}}" size="24" ng-model="passive.name" required></span></span>
+                    </div>
+                    <div class="monster-ability-row">
+                        <span class="monster-ability-cell monster-ability-left"><label class="monster-label" for="mictrl-pa-eff{{$index}}">Effect</label></span>
+                        <span class="monster-ability-cell monster-ability-right"><span class="monster-ability-ctrl-margin"><input type="text" class="monster-input monster-ability-ctrl-fill" id="mictrl-pa-eff{{$index}}" size="40" ng-model="passive.effect.effectDescription"></span></span>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
     </fieldset>
-    <fieldset class="monster-actions">
+
+    <fieldset class="monster-controls">
         <button class="btn">Save Monster &raquo;</button>
     </fieldset>
 </form>
-</div>
 </div>
