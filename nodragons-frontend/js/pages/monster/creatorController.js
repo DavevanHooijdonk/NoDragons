@@ -20,6 +20,13 @@ angular.module('noDragons').controller('creatorController', ['$scope', '$locatio
             "effect": {
                 "effectDescription": "Wield the Power of Bananas"
             }
+        },
+        {
+            "name": "Potato IQ",
+            "id": 2,
+            "effect": {
+                "effectDescription": "Have the IQ of a potato. Achievement unlocked."
+            }
         }
         ],
         "activeAbilities": [
