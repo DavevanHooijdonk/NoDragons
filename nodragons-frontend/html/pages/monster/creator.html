@@ -8,7 +8,7 @@
     td.monster-label {text-align: left; padding-right: 6px;}
     td.monster-input {text-align: left;}
     input.monster-numeric {width: 6em;}
-    label.input-error {color: red;}
+    .input-error {color: red; padding-left: 6px;}
 
     /* Monster abilities. Grouping and formatting like a table. */
     .monster-ability-list {
@@ -48,7 +48,7 @@
     span.monster-ability-right {
         width: 44rem;
     }
-    span.monster-ability-ctrl-margin
+    .monster-ability-ctrl-margin
     {
         padding-left: 6px;
     }
@@ -79,7 +79,7 @@
             <tr>
                 <td class="monster-label"><label for="mictrl-name">Monster Name</label></td>
                 <td td class="monster-input"><input type="text" name="monsterName" id="mictrl-name" ng-model="monster.name" ng-required="true" ng-trim="true" size="24" required></td>
-                <td><label class="input-error" ng-show="monsterForm.monsterName.$error.required">Name is required</label></td>
+                <td><span class="input-error" ng-show="monsterForm.monsterName.$error.required">Name is required</span></td>
             </tr>
 
             <tr>
@@ -134,12 +134,16 @@
         <legend>Passive Abilities</legend>
         <div class="monster-ability-list">
             <div ng-repeat="passive in monster.passiveAbilities">
+                <ng-form name="abilityInnerForm">
                 <!-- Switch between two alternating classes to visually distinguish the abilities in the list -->
                 <div class="{{($index % 2 == 0) ? 'monster-ability-group-container' : 'monster-ability-group-container-alt'}}">
                 <div class="monster-ability-group">
                     <div class="monster-ability-row">
                         <span class="monster-ability-cell monster-ability-left"><label class="monster-label" for="mictrl-pa-name{{$index}}">Name</label></span>
-                        <span class="monster-ability-cell monster-ability-right"><span class="monster-ability-ctrl-margin"><input type="text" class="monster-input" id="mictrl-pa-name{{$index}}" size="24" ng-model="passive.name" required></span></span>
+                        <span class="monster-ability-cell monster-ability-right">
+                            <span class="monster-ability-ctrl-margin"><input type="text" class="monster-input" id="mictrl-pa-name{{$index}}" name="passiveNameCtrl" size="24" ng-model="passive.name" required></span>
+                            <span class="input-error" ng-show="abilityInnerForm.passiveNameCtrl.$error.required">Name is required</span>
+                        </span>
                     </div>
                     <div class="monster-ability-row">
                         <span class="monster-ability-cell monster-ability-left"><label class="monster-label" for="mictrl-pa-eff{{$index}}">Effect</label></span>
@@ -147,7 +151,9 @@
                     </div>
                 </div>
                 </div>
+                </ng-form>
             </div>
+
         </div>
     </fieldset>
 
