@@ -15,12 +15,12 @@
         display: table;
     }
     .monster-ability-group-container, .monster-ability-group-container-alt {
-        background-color: lavender;
+        background-color: lavender; /* TODO: Need better colours */
         padding-bottom: 10px;
     }
     .monster-ability-group-container-alt
     {
-        background-color: cornsilk;
+        background-color: cornsilk; /* TODO: Need better colours */
     }
     .monster-ability-group-container .monster-input, .monster-ability-group-container-alt .monster-input
     {
@@ -50,6 +50,30 @@
     }
     .monster-ability-ctrl-margin
     {
+        padding-left: 6px;
+    }
+    /* Controls for abilities. */
+    .ability-remove-button {
+        text-align: center;
+        padding: 0px;
+        width: 30px;
+        height: 30px;
+        position: relative;
+        top: 50%;
+        transform: translateY(50%);
+        /* border: 1px solid ; */
+    }
+    .ability-remove-button-container {
+        float: right;
+        clear: right;
+        padding: 0 6px 0 3px;
+    }
+    .monster-ability-controls {
+        margin-top: 10px;
+        text-align: right;
+    }
+    .monster-add-ability-span {
+        padding-right: 20px;
         padding-left: 6px;
     }
 
@@ -137,6 +161,9 @@
                 <ng-form name="abilityInnerForm">
                 <!-- Switch between two alternating classes to visually distinguish the abilities in the list -->
                 <div class="{{($index % 2 == 0) ? 'monster-ability-group-container' : 'monster-ability-group-container-alt'}}">
+                <!-- Control to remove the ability -->
+                <div class="ability-remove-button-container"><button class="btn ability-remove-button" title="Remove this ability"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></div>
+                <!-- Display and edit controls for the ability -->
                 <div class="monster-ability-group">
                     <div class="monster-ability-row">
                         <span class="monster-ability-cell monster-ability-left"><label class="monster-label" for="mictrl-pa-name{{$index}}">Name</label></span>
@@ -153,7 +180,13 @@
                 </div>
                 </ng-form>
             </div>
-
+            <!-- Controls to add new ability -->
+            <div class="monster-ability-controls">
+                [Click here to add a new ability:
+                <span class="monster-add-ability-span">
+                <button class="btn" title="Add passive ability"><span class="glyphicon glyphicon-plus"></span></button> ]
+                </span>
+            </div>
         </div>
     </fieldset>
 
