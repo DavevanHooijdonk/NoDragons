@@ -42,8 +42,9 @@ public class MonsterController {
         return monsterService.loadMonsterTemplate(id);
     }
 
-    @RequestMapping(value="/allmonstertemplates", method=RequestMethod.GET)
-    public Map<Integer, Template> retrieveAllMonsterTemplate() {
+    @RequestMapping(value="/allmonstertemplates", method=RequestMethod.POST)
+    public List<Template> retrieveAllMonsterTemplate() {
+        monsterService.mockMonsterTemplate();
         return monsterService.loadAllMonsterTemplates();
     }
 
@@ -53,7 +54,7 @@ public class MonsterController {
     }
 
     @RequestMapping(value="/allmonsters", method=RequestMethod.GET)
-    public Map<Integer, Monster> retrieveAllMonsters() {
+    public List<Monster> retrieveAllMonsters() {
         return monsterService.loadAllMonsters();
     }
 }

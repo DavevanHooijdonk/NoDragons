@@ -1,7 +1,11 @@
 package com.brocoding.nodragons.service;
 
 import com.brocoding.nodragons.domain.character.Monster;
+import com.brocoding.nodragons.domain.character.monster.Statistics;
 import com.brocoding.nodragons.domain.character.monster.Template;
+import com.brocoding.nodragons.domain.character.monster.ability.ActiveAbility;
+import com.brocoding.nodragons.domain.character.monster.ability.Effect;
+import com.brocoding.nodragons.domain.character.monster.ability.PassiveAbility;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -37,12 +41,25 @@ public class MonsterServiceMemory implements MonsterService {
     }
 
     @Override
-    public Map<Integer,Template> loadAllMonsterTemplates() {
-        return templates;
+    public List<Template> loadAllMonsterTemplates() {
+        return new ArrayList<>(templates.values());
     }
 
     @Override
-    public Map<Integer,Monster> loadAllMonsters() {
-        return monsters;
+    public List<Monster> loadAllMonsters() {
+        return new ArrayList<>(monsters.values());
+    }
+
+    //Should be removed later
+    @Override
+    public void mockMonsterTemplate() {
+        List<PassiveAbility> pa = new ArrayList<>();
+        pa.add(new PassiveAbility("banana throw",10,new Effect("bla")));
+        pa.add(new PassiveAbility("banana go",11,new Effect("blabla")));
+        List<ActiveAbility> aa = new ArrayList<>();
+        aa.add(new ActiveAbility("banana crit",10,5,50,new Effect("blaCRIT")));
+        this.saveMonsterTemplate(1,new Template("GOD",12, Template.MonsterRank.BOSS,new Statistics(12,4,4,0,0,0),pa,aa));
+        this.saveMonsterTemplate(2,new Template("GOD2",14, Template.MonsterRank.BOSS,new Statistics(12,4,4,0,0,0),pa,aa));
+        this.saveMonsterTemplate(3,new Template("GOD3",16, Template.MonsterRank.BOSS,new Statistics(12,4,4,0,0,0),pa,aa));
     }
 }

@@ -18,9 +18,10 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Template {
+    public enum MonsterRank { MINION, BASIC, LIEUTENANT, BOSS };
     private final String name;
     private final int Id;
-    public enum MonsterRank { MINION, BASIC, LIEUTENANT, BOSS };
+    private final MonsterRank monsterRank;
     private final Statistics stats;
     private final List<PassiveAbility> passiveAbilities;
     private final List<ActiveAbility> activeAbilities;
@@ -34,6 +35,7 @@ public class Template {
                     @JsonProperty(value = "activeAbilities") List<ActiveAbility> activeAbilities) {
         this.name = name;
         this.Id = Id;
+        this.monsterRank = monsterRank;
         this.stats = stats;
         this.passiveAbilities = passiveAbilities;
         this.activeAbilities = activeAbilities;
