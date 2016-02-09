@@ -1,3 +1,7 @@
+// TODO:
+// - Allow undo/redo of removing abilities. If you accidentally click remove, then it should be undoable.
+// - Add validation to the min-max damage of active abilities (min <= max).
+
 angular.module('noDragons').controller('creatorController', ['$scope', '$location', '$http', function ($scope, $location, $http) {
     // Mock object
     $scope.monster =
@@ -55,5 +59,20 @@ angular.module('noDragons').controller('creatorController', ['$scope', '$locatio
     {
         var passives = $scope.monster.passiveAbilities;
         passives.splice(index, 1);
+    }
+
+    $scope.addActiveAbility = function ()
+    {
+        // TODO: There has to be a neater way (factory? where?) of generating a new active.
+        var actives = $scope.monster.activeAbilities;
+        var nextId = actives.reduce(function (prevId, active) {return Math.max(prevId, active.id);}, -1) + 1;
+        actives.push( {name: "New Active", id: nextId, minimumDamage: 0, maximumDamage: 0, effect: {effectDescription: ""}} );
+        console.log("Added new active ability with id=" + nextId);
+    }
+
+    $scope.removeActiveAbility = function (index)
+    {
+        var actives = $scope.monster.activeAbilities;
+        actives.splice(index, 1);
     }
 }]);

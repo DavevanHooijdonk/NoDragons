@@ -44,7 +44,7 @@
     /* For monster effects: divide label and input over the entire space. */
     /* Note: these two should add up to the form width, or less. */
     span.monster-ability-left {
-        width: 4.5rem;
+        width: 6rem;
     }
     span.monster-ability-right {
         width: 44rem;
@@ -82,6 +82,10 @@
         height: 30px;
         padding: 0;
         text-align: center;
+    }
+
+    .clickable {
+        cursor: pointer;
     }
 
     /* Monster creator controls group. */
@@ -130,33 +134,33 @@
         <table border="0">
         <tr>
             <td class="monster-label"><label for="mictrl-hp">Hitpoints</label></td>
-            <td td class="monster-input"><input type="number" id="mictrl-hp" class="monster-numeric" ng-model="monster.stats.maximumHitpoints" size="6" maxlength="6"/></td>
+            <td td class="monster-input"><input type="number" id="mictrl-hp" class="monster-numeric" ng-model="monster.stats.maximumHitpoints" size="6" min="0" required/></td>
         </tr>
         <tr>
             <td class="monster-label"><label for="mictrl-zoc">Zone of Control
             </label></td>
-            <td td class="monster-input"><input type="number" id="mictrl-zoc" class="monster-numeric" ng-model="monster.stats.zoneOfControl" size="6" maxlength="2"/></td>
+            <td td class="monster-input"><input type="number" id="mictrl-zoc" class="monster-numeric" ng-model="monster.stats.zoneOfControl" size="6" maxlength="2" min="0" required/></td>
             <td><label class="input-error" ng-show="false">Error?</label></td>
         </tr>
         <tr>
             <td class="monster-label"> <label for="mictrl-movsp">Movement Speed
             </label></td>
-            <td td class="monster-input"><input type="number" id="mictrl-movsp" class="monster-numeric" ng-model="monster.stats.movementSpeed" size="6" maxlength="2"/></td>
+            <td td class="monster-input"><input type="number" id="mictrl-movsp" class="monster-numeric" ng-model="monster.stats.movementSpeed" size="6" maxlength="2" min="0" required/></td>
         </tr>
         <tr>
             <td class="monster-label"><label for="mictrl-phres">Physical Resistance
             </label></td>
-            <td td class="monster-input"><input type="number" id="mictrl-phres" class="monster-numeric" ng-model="monster.stats.physicalResistance" size="6" maxlength="3"/></td>
+            <td td class="monster-input"><input type="number" id="mictrl-phres" class="monster-numeric" ng-model="monster.stats.physicalResistance" size="6" maxlength="3" required/></td>
         </tr>
         <tr>
             <td class="monster-label"><label for="mictrl-magres">Magical Resistance
             </label></td>
-            <td td class="monster-input"><input type="number" id="mictrl-magres" class="monster-numeric" ng-model="monster.stats.magicalResistance" size="6" maxlength="3"/></td>
+            <td td class="monster-input"><input type="number" id="mictrl-magres" class="monster-numeric" ng-model="monster.stats.magicalResistance" size="6" maxlength="3" required/></td>
         </tr>
         <tr>
             <td class="monster-label"><label for="mictrl-menres">Mental Resistance
             </label></td>
-            <td td class="monster-input"><input type="number" id="mictrl-menres" class="monster-numeric" ng-model="monster.stats.mentalResistance" size="6" maxlength="3"/></td>
+            <td td class="monster-input"><input type="number" id="mictrl-menres" class="monster-numeric" ng-model="monster.stats.mentalResistance" size="6" maxlength="3" required/></td>
         </tr>
         </table>
     </fieldset>
@@ -189,16 +193,61 @@
             </div>
             <!-- Controls to add new ability -->
             <div class="monster-ability-controls">
-                [Click here to add a new ability:
+                <span class="clickable" ng-click="addPassiveAbility()">[Click here to add a passive ability:
                 <span class="monster-add-ability-span">
-                <button class="btn ability-add-button" title="Add passive ability" ng-click="addPassiveAbility()"><span class="glyphicon glyphicon-plus"></span></button> ]
-                </span>
+                <button class="btn ability-add-button" title="Add passive ability"><span class="glyphicon glyphicon-plus"></span></button> ]
+                </span></span>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="row4">
+        <legend>Active Abilities</legend>
+        <div class="monster-ability-list">
+            <div ng-repeat="active in monster.activeAbilities">
+                <ng-form name="abilityInnerForm">
+                    <!-- Switch between two alternating classes to visually distinguish the abilities in the list -->
+                    <div class="{{($index % 2 == 0) ? 'monster-ability-group-container' : 'monster-ability-group-container-alt'}}">
+                        <!-- Control to remove the ability -->
+                        <div class="ability-remove-button-container"><button class="btn ability-remove-button" title="Remove this ability" ng-click="removeActiveAbility($index)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></div>
+                        <!-- Display and edit controls for the ability -->
+                        <div class="monster-ability-group">
+                            <div class="monster-ability-row">
+                                <span class="monster-ability-cell monster-ability-left"><label class="monster-label" for="mictrl-aa-name{{$index}}">Name</label></span>
+                                <span class="monster-ability-cell monster-ability-right">
+                                    <span class="monster-ability-ctrl-margin"><input type="text" class="monster-input" id="mictrl-aa-name{{$index}}" name="activeNameCtrl" size="24" ng-model="active.name" required></span>
+                                    <span class="input-error" ng-show="abilityInnerForm.activeNameCtrl.$error.required">Name is required</span>
+                                </span>
+                            </div>
+                            <div class="monster-ability-row">
+                                <span class="monster-ability-cell monster-ability-left"><label class="monster-label" for="mictrl-aa-mindmg{{$index}}">Damage</label></span>
+                                <span class="monster-ability-cell monster-ability-ctrl-margin">
+                                    <input type="number" id="mictrl-aa-mindmg{{$index}}" class="monster-numeric" ng-model="active.minimumDamage" size="6" min="0" required>
+                                    -
+                                    <input type="number" id="mictrl-aa-maxdmg{{$index}}" class="monster-numeric" ng-model="active.maximumDamage" size="6" min="0" required>
+                                    <label class="monster-label monster-ability-ctrl-margin" for="mictrl-aa-maxdmg{{$index}}">(min. - max.)</label>
+                                </span>
+                            </div>
+                            <div class="monster-ability-row">
+                                <span class="monster-ability-cell monster-ability-left"><label class="monster-label" for="mictrl-aa-eff{{$index}}">Effect</label></span>
+                                <span class="monster-ability-cell monster-ability-right"><span class="monster-ability-ctrl-margin"><input type="text" class="monster-input monster-ability-ctrl-fill" id="mictrl-aa-eff{{$index}}" size="40" ng-model="active.effect.effectDescription"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                </ng-form>
+            </div>
+            <!-- Controls to add new ability -->
+            <div class="monster-ability-controls">
+                <span class="clickable" ng-click="addActiveAbility()">[Click here to add an active ability:
+                <span class="monster-add-ability-span">
+                <button class="btn ability-add-button" title="Add active ability"><span class="glyphicon glyphicon-plus"></span></button> ]
+                </span></span>
             </div>
         </div>
     </fieldset>
 
     <fieldset class="monster-controls">
-        <button class="btn">Save Monster &raquo;</button>
+        <button class="btn" title="Save monster">Save Monster &raquo;</button>
     </fieldset>
 </form>
 </div>
