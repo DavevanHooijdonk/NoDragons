@@ -1,5 +1,10 @@
 angular.module('noDragons').controller('overviewController', ['$scope', '$location', '$http', function ($scope, $location, $http) {
-    $http.post('http://localhost:8080/allmonstertemplates').then(function (data){
+    $http.get('/allmonstertemplates').then(function (data){
         $scope.templates = data.data;
     });
+
+    $scope.editMonster = function (id)
+    {
+        $location.path("/monstereditor/" + id);
+    }
 }]);

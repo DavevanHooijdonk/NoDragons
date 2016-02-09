@@ -10,14 +10,16 @@ noDragons.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'webjars/html/pages/mainpage.html',
             controller: 'mainpageController'
         })
-
         .when('/monsteroverview', {
             templateUrl: 'webjars/html/pages/monster/overview.html',
             controller: 'overviewController'
         })
-        .when('/monstercreator', {
+        .when('/monstereditor/:monsterId', {
             templateUrl: 'webjars/html/pages/monster/creator.html',
             controller: 'creatorController'
+        })
+        .otherwise( {
+            redirectTo: '/'
         });
 }]);
 
