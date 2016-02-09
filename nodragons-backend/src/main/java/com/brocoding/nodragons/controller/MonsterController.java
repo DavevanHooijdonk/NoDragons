@@ -10,6 +10,7 @@ import com.brocoding.nodragons.service.MonsterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -38,11 +39,14 @@ public class MonsterController {
     }
 
     @RequestMapping(value="/monstertemplate/{id}", method=RequestMethod.GET)
-    public Template retrieveMonsterTemplate(@PathVariable int id) {
-        return monsterService.loadMonsterTemplate(id);
+    public Template retrieveMonsterTemplate(@PathVariable int id, HttpServletResponse httpServletResponse) {
+        monsterService.mockMonsterTemplate();
+        Template template = monsterService.loadMonsterTemplate(id);
+        if (template == null) httpServletResponse.setStatus(404);
+        return template;
     }
 
-    @RequestMapping(value="/allmonstertemplates", method=RequestMethod.POST)
+    @RequestMapping(value="/allmonstertemplates", method=RequestMethod.GET)
     public List<Template> retrieveAllMonsterTemplate() {
         monsterService.mockMonsterTemplate();
         return monsterService.loadAllMonsterTemplates();

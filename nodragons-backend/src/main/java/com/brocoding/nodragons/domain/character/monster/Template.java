@@ -21,7 +21,7 @@ public class Template {
     public enum MonsterRank { MINION, BASIC, LIEUTENANT, BOSS };
     private final String name;
     private final int Id;
-    private final MonsterRank monsterRank;
+    private final MonsterRank rank;
     private final Statistics stats;
     private final List<PassiveAbility> passiveAbilities;
     private final List<ActiveAbility> activeAbilities;
@@ -29,13 +29,13 @@ public class Template {
     @JsonCreator
     public Template(@JsonProperty(value = "name") String name,
                     @JsonProperty(value = "id") int Id,
-                    @JsonProperty(value = "monsterRank") MonsterRank monsterRank,
+                    @JsonProperty(value = "rank") MonsterRank rank,
                     @JsonProperty(value = "stats") Statistics stats,
                     @JsonProperty(value = "passiveAbilities") List<PassiveAbility> passiveAbilities,
                     @JsonProperty(value = "activeAbilities") List<ActiveAbility> activeAbilities) {
         this.name = name;
         this.Id = Id;
-        this.monsterRank = monsterRank;
+        this.rank = rank;
         this.stats = stats;
         this.passiveAbilities = passiveAbilities;
         this.activeAbilities = activeAbilities;

@@ -58,8 +58,8 @@ public class MonsterServiceMemory implements MonsterService {
         pa.add(new PassiveAbility("banana go",11,new Effect("blabla")));
         List<ActiveAbility> aa = new ArrayList<>();
         aa.add(new ActiveAbility("banana crit",10,5,50,new Effect("blaCRIT")));
-        this.saveMonsterTemplate(1,new Template("GOD",12, Template.MonsterRank.BOSS,new Statistics(12,4,4,0,0,0),pa,aa));
-        this.saveMonsterTemplate(2,new Template("GOD2",14, Template.MonsterRank.BOSS,new Statistics(12,4,4,0,0,0),pa,aa));
-        this.saveMonsterTemplate(3,new Template("GOD3",16, Template.MonsterRank.BOSS,new Statistics(12,4,4,0,0,0),pa,aa));
+        this.saveMonsterTemplate(12,new Template("GOD",12, Template.MonsterRank.BOSS,new Statistics(12,4,4,0,0,0),pa,aa));
+        this.saveMonsterTemplate(14,new Template("GOD2",14, Template.MonsterRank.BOSS,new Statistics(12,4,4,0,0,0),pa,aa));
+        this.saveMonsterTemplate(16,new Template("GOD3",16, Template.MonsterRank.BOSS,new Statistics(12,4,4,0,0,0),pa,aa));
     }
 }
