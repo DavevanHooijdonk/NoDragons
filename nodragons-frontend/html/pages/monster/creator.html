@@ -13,14 +13,15 @@
     /* Monster abilities. Grouping and formatting like a table. */
     .monster-ability-list {
         display: table;
+        width: 100%;
     }
     .monster-ability-group-container, .monster-ability-group-container-alt {
-        background-color: lavender; /* TODO: Need better colours */
+        background-color: #efefef;
         padding-bottom: 10px;
     }
     .monster-ability-group-container-alt
     {
-        background-color: cornsilk; /* TODO: Need better colours */
+        background-color: #f7f7f7;
     }
     .monster-ability-group-container .monster-input, .monster-ability-group-container-alt .monster-input
     {
@@ -75,6 +76,12 @@
     .monster-add-ability-span {
         padding-right: 20px;
         padding-left: 6px;
+    }
+    .ability-add-button {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        text-align: center;
     }
 
     /* Monster creator controls group. */
@@ -162,7 +169,7 @@
                 <!-- Switch between two alternating classes to visually distinguish the abilities in the list -->
                 <div class="{{($index % 2 == 0) ? 'monster-ability-group-container' : 'monster-ability-group-container-alt'}}">
                 <!-- Control to remove the ability -->
-                <div class="ability-remove-button-container"><button class="btn ability-remove-button" title="Remove this ability"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></div>
+                <div class="ability-remove-button-container"><button class="btn ability-remove-button" title="Remove this ability" ng-click="removePassiveAbility($index)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></div>
                 <!-- Display and edit controls for the ability -->
                 <div class="monster-ability-group">
                     <div class="monster-ability-row">
@@ -184,7 +191,7 @@
             <div class="monster-ability-controls">
                 [Click here to add a new ability:
                 <span class="monster-add-ability-span">
-                <button class="btn" title="Add passive ability"><span class="glyphicon glyphicon-plus"></span></button> ]
+                <button class="btn ability-add-button" title="Add passive ability" ng-click="addPassiveAbility()"><span class="glyphicon glyphicon-plus"></span></button> ]
                 </span>
             </div>
         </div>

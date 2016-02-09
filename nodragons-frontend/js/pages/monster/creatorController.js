@@ -16,14 +16,14 @@ angular.module('noDragons').controller('creatorController', ['$scope', '$locatio
         "passiveAbilities": [
         {
             "name": "Banana Passive",
-            "id": 1,
+            "id": 0,
             "effect": {
                 "effectDescription": "Wield the Power of Bananas"
             }
         },
         {
             "name": "Potato IQ",
-            "id": 2,
+            "id": 1,
             "effect": {
                 "effectDescription": "Have the IQ of a potato. Achievement unlocked."
             }
@@ -32,7 +32,7 @@ angular.module('noDragons').controller('creatorController', ['$scope', '$locatio
         "activeAbilities": [
         {
             "name": "Banana Attack Strike Move Ability",
-            "id": 2,
+            "id": 0,
             "minimumDamage": 12,
             "maximumDamage": 14,
             "effect": {
@@ -41,4 +41,19 @@ angular.module('noDragons').controller('creatorController', ['$scope', '$locatio
         }
         ]
     };
+
+    $scope.addPassiveAbility = function ()
+    {
+        // TODO: There has to be a neater way (factory? where?) of generating a new passive.
+        var passives = $scope.monster.passiveAbilities;
+        var nextId = passives.reduce(function (prevId, passive) {return Math.max(prevId, passive.id);}, -1) + 1;
+        passives.push( {name: "New Passive", id: nextId, effect: {effectDescription: ""}} );
+        console.log("Added new passive ability with id=" + nextId);
+    }
+
+    $scope.removePassiveAbility = function (index)
+    {
+        var passives = $scope.monster.passiveAbilities;
+        passives.splice(index, 1);
+    }
 }]);
