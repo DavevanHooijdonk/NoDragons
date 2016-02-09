@@ -2,7 +2,7 @@
 // - Allow undo/redo of removing abilities. If you accidentally click remove, then it should be undoable.
 // - Add validation to the min-max damage of active abilities (min <= max).
 
-angular.module('noDragons').controller('creatorController', ['$scope', '$window', '$location', '$routeParams', '$http', function ($scope, $window, $location, $routeParams, $http) {
+angular.module('noDragons').controller('monsterEditorController', ['$scope', '$window', '$location', '$routeParams', '$http', function ($scope, $window, $location, $routeParams, $http) {
     // Get current route parameter: which monster are we viewing?
     $scope.id = $routeParams.monsterId;
 

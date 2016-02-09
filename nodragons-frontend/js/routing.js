@@ -15,8 +15,8 @@ noDragons.config(['$routeProvider', function ($routeProvider) {
             controller: 'overviewController'
         })
         .when('/monstereditor/:monsterId', {
-            templateUrl: 'webjars/html/pages/monster/creator.html',
-            controller: 'creatorController'
+            templateUrl: 'webjars/html/pages/monster/monstereditor.html',
+            controller: 'monsterEditorController'
         })
         .otherwise( {
             redirectTo: '/'
