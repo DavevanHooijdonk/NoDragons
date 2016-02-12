@@ -36,6 +36,11 @@ public class MonsterServiceMemory implements MonsterService {
     }
 
     @Override
+    public boolean deleteMonsterTemplate(int id) {
+        return templates.remove(id) != null;
+    }
+
+    @Override
     public Monster loadMonster(int id) {
         return monsters.get(id);
     }

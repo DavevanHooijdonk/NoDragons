@@ -13,7 +13,8 @@ public interface MonsterService {
 
     void saveMonsterTemplate(int id,Template template);
     void saveMonster(int id,Monster monster);
-    Template loadMonsterTemplate (int id);
+    Template loadMonsterTemplate(int id);
+    boolean deleteMonsterTemplate(int id);
     Monster loadMonster(int id);
     List<Template> loadAllMonsterTemplates();
     List<Monster> loadAllMonsters();

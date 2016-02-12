@@ -34,16 +34,22 @@ public class MonsterController {
         monsterService.saveMonsterTemplate(id, template);
     }
 
-    @RequestMapping(value="/monster/{id}", method=RequestMethod.POST)
-    public void saveMonster(@PathVariable int id, @RequestBody Monster monster) {
-        monsterService.saveMonster(id, monster);
-    }
-
     @RequestMapping(value="/monstertemplate/{id}", method=RequestMethod.GET)
     public Template retrieveMonsterTemplate(@PathVariable int id, HttpServletResponse httpServletResponse) {
         Template template = monsterService.loadMonsterTemplate(id);
         if (template == null) httpServletResponse.setStatus(404);
         return template;
+    }
+
+    @RequestMapping(value="/monstertemplate/{id}", method=RequestMethod.DELETE)
+    public void deleteMonsterTemplate(@PathVariable int id, HttpServletResponse httpServletResponse) {
+        if ( ! monsterService.deleteMonsterTemplate(id))
+            httpServletResponse.setStatus(404);
+    }
+
+    @RequestMapping(value="/monster/{id}", method=RequestMethod.POST)
+    public void saveMonster(@PathVariable int id, @RequestBody Monster monster) {
+        monsterService.saveMonster(id, monster);
     }
 
     @RequestMapping(value="/allmonstertemplates", method=RequestMethod.GET)
