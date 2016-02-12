@@ -2,7 +2,7 @@
  * Created by X086353 on 1/7/2016.
  */
 
-var noDragons = angular.module('noDragons', ['ngRoute']);
+var noDragons = angular.module('noDragons', ['ngRoute', 'ngResource']);
 
 noDragons.config(['$routeProvider', function ($routeProvider) {
     $routeProvider

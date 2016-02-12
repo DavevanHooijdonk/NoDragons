@@ -102,18 +102,23 @@
 
 
 <div class="jumbotron text-center">
-    <h2>Monster Creator</h2>
+    <h2>Monster Editor</h2>
 </div>
 <div class="monster-creator-form-container">
 <form name="monsterForm" action="" class="register monster-creator-form">
     <h1>Monster: {{monster.name}}</h1>
 
-    <fieldset class="row1">
+    <fieldset class="row1" ng-disabled="savingInProgress">
         <legend>Monster Info</legend>
         <table border="0">
             <tr>
+                <td class="monster-label"><label>Monster ID</label></td>
+                <td class="monster-input"><span ng-bind="monster.id"></span></td>
+            </tr>
+
+            <tr>
                 <td class="monster-label"><label for="mictrl-name">Monster Name</label></td>
-                <td td class="monster-input"><input type="text" name="monsterName" id="mictrl-name" ng-model="monster.name" ng-required="true" ng-trim="true" size="24" required></td>
+                <td class="monster-input"><input type="text" name="monsterName" id="mictrl-name" ng-model="monster.name" ng-required="true" ng-trim="true" size="24" required></td>
                 <td><span class="input-error" ng-show="monsterForm.monsterName.$error.required">Name is required</span></td>
             </tr>
 
@@ -129,7 +134,7 @@
         </table>
     </fieldset>
 
-    <fieldset class="row2">
+    <fieldset class="row2" ng-disabled="savingInProgress">
         <legend>Monster Stats</legend>
         <table border="0">
         <tr>
@@ -165,7 +170,7 @@
         </table>
     </fieldset>
 
-    <fieldset class="row3">
+    <fieldset class="row3" ng-disabled="savingInProgress">
         <legend>Passive Abilities</legend>
         <div class="monster-ability-list">
             <div ng-repeat="passive in monster.passiveAbilities">
@@ -201,7 +206,7 @@
         </div>
     </fieldset>
 
-    <fieldset class="row4">
+    <fieldset class="row4" ng-disabled="savingInProgress">
         <legend>Active Abilities</legend>
         <div class="monster-ability-list">
             <div ng-repeat="active in monster.activeAbilities">
@@ -246,8 +251,8 @@
         </div>
     </fieldset>
 
-    <fieldset class="monster-controls">
-        <button class="btn" title="Save monster">Save Monster &raquo;</button>
+    <fieldset class="monster-controls" ng-disabled="savingInProgress">
+        <button class="btn" title="Save monster" ng-click="saveMonster()">Save Monster &raquo;</button>
     </fieldset>
 </form>
 </div>

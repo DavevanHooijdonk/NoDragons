@@ -1,22 +1,20 @@
 // TODO:
 // - Allow undo/redo of removing abilities. If you accidentally click remove, then it should be undoable.
 // - Add validation to the min-max damage of active abilities (min <= max).
+// - Need to delay load until we have the template data! ( http://stackoverflow.com/questions/16617259/wait-until-scope-variable-is-loaded-before-using-it-in-the-view-in-angular-js )
 
-angular.module('noDragons').controller('monsterEditorController', ['$scope', '$window', '$location', '$routeParams', '$http', function ($scope, $window, $location, $routeParams, $http) {
+angular.module('noDragons').controller('monsterEditorController', ['$scope', '$window', '$location', '$routeParams', '$resource', function ($scope, $window, $location, $routeParams, $resource) {
     // Get current route parameter: which monster are we viewing?
     $scope.id = $routeParams.monsterId;
 
-    // Fetch the monster details
-    $http.get('/monstertemplate/' + $scope.id).then(
-        function (response) {
-            $scope.monster = response.data;
-        },
+    var monsterResource = $resource('/monstertemplate/:id', {id: $scope.id});
+
+    $scope.monster = monsterResource.get({}, function () {},
         function (fail)
         {
             $window.alert("Could not retrieve monster with id=" + $scope.id + ". Server error " + fail.status + ": " + fail.statusText);
             $location.path('/monsteroverview');
-        }
-    );
+        });
 
     // Mock object (unused)
     $scope.mockMonster =
@@ -89,5 +87,23 @@ angular.module('noDragons').controller('monsterEditorController', ['$scope', '$w
     {
         var actives = $scope.monster.activeAbilities;
         actives.splice(index, 1);
+    }
+
+    // Used on fieldsets semi-legally to disable controls. This is not !00% legal HTML (and IE does not support).
+    $scope.savingInProgress = false;
+    $scope.saveMonster = function ()
+    {
+        $scope.savingInProgress = true;
+        monsterResource.save({}, $scope.monster,
+            function (success)
+            {
+                $location.path('/monsteroverview');
+            },
+            function (fail)
+            {
+                $scope.savingInProgress = false;
+                $window.alert("Failed to save monster: error " + fail.status + " " + fail.statusText);
+            }
+        );
     }
 }]);
