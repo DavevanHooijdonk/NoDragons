@@ -91,6 +91,7 @@ angular.module('noDragons').controller('monsterEditorController', ['$scope', '$w
 
     // Used on fieldsets semi-legally to disable controls. This is not !00% legal HTML (and IE does not support).
     $scope.savingInProgress = false;
+
     $scope.saveMonster = function ()
     {
         $scope.savingInProgress = true;
@@ -103,6 +104,21 @@ angular.module('noDragons').controller('monsterEditorController', ['$scope', '$w
             {
                 $scope.savingInProgress = false;
                 $window.alert("Failed to save monster: error " + fail.status + " " + fail.statusText);
+            }
+        );
+    }
+
+    $scope.deleteMonster = function ()
+    {
+        $scope.savingInProgress = true;
+        monsterResource.remove({}, {},
+            function (success)
+            {
+                $location.path('/monsteroverview');
+            },
+            function (fail) {
+                $scope.savingInProgress = false;
+                $window.alert("Failed to delete monster: error " + fail.status + " " + fail.statusText);
             }
         );
     }

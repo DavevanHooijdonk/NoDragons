@@ -96,6 +96,10 @@
         border-top: 1px solid #c6c7cc;
         padding: 20px;
     }
+    .monster-control-left-float {
+        float: left;
+    }
+
 </style>
 
 
@@ -252,6 +256,9 @@
     </fieldset>
 
     <fieldset class="monster-controls" ng-disabled="savingInProgress">
+        <div class="monster-control-left-float">
+            <button class="btn" title="Delete monster" ng-click="deleteMonster()">Delete Monster &#x2612;</button>
+        </div>
         <button class="btn" title="Save monster" ng-click="saveMonster()">Save Monster &raquo;</button>
     </fieldset>
 </form>
