@@ -26,6 +26,7 @@ public class MonsterController {
     @Autowired
     public MonsterController(MonsterService monsterService) {
         this.monsterService = monsterService;
+        this.monsterService.mockMonsterTemplate();
     }
 
     @RequestMapping(value="/monstertemplate/{id}", method=RequestMethod.POST)
@@ -40,7 +41,6 @@ public class MonsterController {
 
     @RequestMapping(value="/monstertemplate/{id}", method=RequestMethod.GET)
     public Template retrieveMonsterTemplate(@PathVariable int id, HttpServletResponse httpServletResponse) {
-        monsterService.mockMonsterTemplate();
         Template template = monsterService.loadMonsterTemplate(id);
         if (template == null) httpServletResponse.setStatus(404);
         return template;
@@ -48,7 +48,6 @@ public class MonsterController {
 
     @RequestMapping(value="/allmonstertemplates", method=RequestMethod.GET)
     public List<Template> retrieveAllMonsterTemplate() {
-        monsterService.mockMonsterTemplate();
         return monsterService.loadAllMonsterTemplates();
     }
 
