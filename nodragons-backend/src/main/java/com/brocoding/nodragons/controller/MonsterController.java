@@ -47,6 +47,11 @@ public class MonsterController {
             httpServletResponse.setStatus(404);
     }
 
+    @RequestMapping(value="/createmonstertemplate", method=RequestMethod.POST)
+    public int createMonsterTemplate() {
+        return monsterService.createMonsterTemplate();
+    }
+
     @RequestMapping(value="/monster/{id}", method=RequestMethod.POST)
     public void saveMonster(@PathVariable int id, @RequestBody Monster monster) {
         monsterService.saveMonster(id, monster);

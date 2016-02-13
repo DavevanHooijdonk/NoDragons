@@ -41,6 +41,15 @@ public class MonsterServiceMemory implements MonsterService {
     }
 
     @Override
+    public int createMonsterTemplate() {
+        int nextId = templates.keySet().stream().reduce(Integer::max).orElse(-1) + 1;
+        Template old = templates.put(nextId, new Template("New Monster", nextId, Template.MonsterRank.BASIC,
+                new Statistics(10,0,3,0,0,0), new ArrayList<>(), new ArrayList<>()));
+        assert( old == null );
+        return nextId;
+    }
+
+    @Override
     public Monster loadMonster(int id) {
         return monsters.get(id);
     }
