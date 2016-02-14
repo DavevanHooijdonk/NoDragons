@@ -109,7 +109,7 @@
     <h2>Monster Editor</h2>
 </div>
 <div class="monster-creator-form-container">
-<form name="monsterForm" action="" class="register monster-creator-form">
+<form name="monsterForm" class="register monster-creator-form">
     <h1>Monster: {{monster.name}}</h1>
 
     <fieldset class="row1" ng-disabled="savingInProgress">
@@ -130,7 +130,7 @@
                 <td class="monster-label"><label for="mictrl-rank" class="monster-label">Monster Rank</label></td>
                 <td class="monster-input"><select class="text" id="mictrl-rank" ng-model="monster.rank">
                     <option value="MINION">Minion</option>
-                    <option value="BASIC">Grunt</option>
+                    <option value="BASIC">Basic</option>
                     <option value="LIEUTENANT">Lieutenant</option>
                     <option value="BOSS">Boss</option>
                 </select></td>
@@ -259,7 +259,7 @@
         <div class="monster-control-left-float">
             <button class="btn" title="Delete monster" ng-click="deleteMonster()">Delete <span class="glyphicon glyphicon-trash"></span></button>
         </div>
-        <button class="btn" title="Save monster" ng-click="saveMonster()">Save Monster &raquo;</button>
+        <button type="submit" class="btn" title="Save monster" ng-click="monsterForm.$valid && saveMonster()">Save Monster &raquo;</button>
     </fieldset>
 </form>
 </div>
