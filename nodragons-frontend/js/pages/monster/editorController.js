@@ -35,14 +35,14 @@ angular.module('noDragons').controller('monsterEditorController', ['$scope', '$w
             "name": "Banana Passive",
             "id": 0,
             "effect": {
-                "effectDescription": "Wield the Power of Bananas"
+                "description": "Wield the Power of Bananas"
             }
         },
         {
             "name": "Potato IQ",
             "id": 1,
             "effect": {
-                "effectDescription": "Have the IQ of a potato. Achievement unlocked."
+                "description": "Have the IQ of a potato. Achievement unlocked."
             }
         }
         ],
@@ -53,7 +53,7 @@ angular.module('noDragons').controller('monsterEditorController', ['$scope', '$w
             "minimumDamage": 12,
             "maximumDamage": 14,
             "effect": {
-                "effectDescription": "Flying banana pain"
+                "description": "Flying banana pain"
             }
         }
         ]
@@ -64,7 +64,7 @@ angular.module('noDragons').controller('monsterEditorController', ['$scope', '$w
         // TODO: There has to be a neater way (factory? where?) of generating a new passive.
         var passives = $scope.monster.passiveAbilities;
         var nextId = passives.reduce(function (prevId, passive) {return Math.max(prevId, passive.id);}, -1) + 1;
-        passives.push( {name: "New Passive", id: nextId, effect: {effectDescription: ""}} );
+        passives.push( {name: "New Passive", id: nextId, effect: {description: ""}} );
         console.log("Added new passive ability with id=" + nextId);
     }
 
@@ -79,7 +79,7 @@ angular.module('noDragons').controller('monsterEditorController', ['$scope', '$w
         // TODO: There has to be a neater way (factory? where?) of generating a new active.
         var actives = $scope.monster.activeAbilities;
         var nextId = actives.reduce(function (prevId, active) {return Math.max(prevId, active.id);}, -1) + 1;
-        actives.push( {name: "New Active", id: nextId, minimumDamage: 0, maximumDamage: 0, effect: {effectDescription: ""}} );
+        actives.push( {name: "New Active", id: nextId, minimumDamage: 0, maximumDamage: 0, effect: {description: ""}} );
         console.log("Added new active ability with id=" + nextId);
     }
 

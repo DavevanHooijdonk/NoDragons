@@ -1,19 +1,13 @@
 package com.brocoding.nodragons.controller;
 
-import com.brocoding.nodragons.domain.character.Monster;
-import com.brocoding.nodragons.domain.character.monster.Statistics;
+import com.brocoding.nodragons.domain.character.monster.Monster;
 import com.brocoding.nodragons.domain.character.monster.Template;
-import com.brocoding.nodragons.domain.character.monster.ability.ActiveAbility;
-import com.brocoding.nodragons.domain.character.monster.ability.Effect;
-import com.brocoding.nodragons.domain.character.monster.ability.PassiveAbility;
 import com.brocoding.nodragons.service.MonsterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by X086353 on 1/7/2016.

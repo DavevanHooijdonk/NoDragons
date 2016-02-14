@@ -31,9 +31,11 @@ public class ActiveAbility {
         this.minimumDamage = minimumDamage;
         this.maximumDamage = maximumDamage;
         this.effect = effect;
+
+        if (!isValid()) throw new IllegalArgumentException("Active ability is not valid");
     }
 
-    public boolean isValid() {
-        return !name.isEmpty() && minimumDamage >= 0 && maximumDamage >= minimumDamage && effect.isValid();
+    private boolean isValid() {
+        return name != null && !name.isEmpty() && minimumDamage >= 0 && maximumDamage >= minimumDamage && effect != null;
     }
 }

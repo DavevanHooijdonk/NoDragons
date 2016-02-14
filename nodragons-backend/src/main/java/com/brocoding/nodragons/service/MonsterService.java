@@ -1,6 +1,6 @@
 package com.brocoding.nodragons.service;
 
-import com.brocoding.nodragons.domain.character.Monster;
+import com.brocoding.nodragons.domain.character.monster.Monster;
 import com.brocoding.nodragons.domain.character.monster.Template;
 
 import java.util.List;
@@ -11,8 +11,8 @@ import java.util.List;
 
 public interface MonsterService {
 
-    void saveMonsterTemplate(int id,Template template) throws InvalidTemplateException;
-    void saveMonster(int id,Monster monster);
+    void saveMonsterTemplate(int id, Template template);
+    void saveMonster(int id, Monster monster);
     Template loadMonsterTemplate(int id);
     boolean deleteMonsterTemplate(int id);
     int createMonsterTemplate();

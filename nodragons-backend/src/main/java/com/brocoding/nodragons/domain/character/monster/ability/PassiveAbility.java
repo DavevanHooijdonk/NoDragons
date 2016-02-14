@@ -25,10 +25,12 @@ public class PassiveAbility {
         this.name = name;
         this.id = id;
         this.effect = effect;
+
+        if (!isValid()) throw new IllegalArgumentException("Passive ability is not valid");
     }
 
-    public boolean isValid()
+    private boolean isValid()
     {
-        return !name.isEmpty() && effect.isValid();
+        return name != null && !name.isEmpty() && effect != null;
     }
 }

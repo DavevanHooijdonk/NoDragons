@@ -1,4 +1,4 @@
-package com.brocoding.nodragons.domain.character;
+package com.brocoding.nodragons.domain.character.monster;
 
 import com.brocoding.nodragons.domain.character.monster.State;
 import com.brocoding.nodragons.domain.character.monster.Template;
@@ -8,7 +8,6 @@ import com.brocoding.nodragons.domain.character.monster.Template;
  */
 
 public class Monster {
-
     private final Template template;
     private final int Id;
     private final State state;

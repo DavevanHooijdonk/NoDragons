@@ -33,9 +33,11 @@ public class Statistics {
         this.physicalResistance = physicalResistance;
         this.magicalResistance = magicalResistance;
         this.mentalResistance = mentalResistance;
+
+        if (!isValid()) throw new IllegalArgumentException("Statistics is not valid");
     }
 
-    public boolean isValid()
+    private boolean isValid()
     {
         return maximumHitpoints >= 0 && zoneOfControl >= 0 && movementSpeed >= 0;
     }

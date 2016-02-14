@@ -15,14 +15,16 @@ import lombok.Getter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Effect {
 
-    private final String effectDescription;
+    private final String description;
 
     @JsonCreator
-    public Effect(@JsonProperty(value = "effectDescription")String effectDescription) {
-        this.effectDescription = effectDescription;
+    public Effect(@JsonProperty(value = "description")String effectDescription) {
+        this.description = effectDescription;
+
+        if (!isValid()) throw new IllegalArgumentException("Effect is not valid");
     }
 
-    public boolean isValid() {
+    private boolean isValid() {
         return true;
     }
 }

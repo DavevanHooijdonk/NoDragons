@@ -1,4 +1,4 @@
-package com.brocoding.nodragons.domain.character;
+package com.brocoding.nodragons.domain.character.player;
 
 import com.brocoding.nodragons.domain.character.monster.State;
 import com.brocoding.nodragons.domain.character.monster.Template;

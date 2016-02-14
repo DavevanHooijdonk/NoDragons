@@ -1,6 +1,6 @@
 package com.brocoding.nodragons.service;
 
-import com.brocoding.nodragons.domain.character.Monster;
+import com.brocoding.nodragons.domain.character.monster.Monster;
 import com.brocoding.nodragons.domain.character.monster.Statistics;
 import com.brocoding.nodragons.domain.character.monster.Template;
 import com.brocoding.nodragons.domain.character.monster.ability.ActiveAbility;
@@ -21,9 +21,8 @@ public class MonsterServiceMemory implements MonsterService {
     private final Map<Integer, Monster> monsters = Collections.synchronizedMap(new HashMap<>());
 
     @Override
-    public void saveMonsterTemplate(int id, Template template) throws InvalidTemplateException {
-        if (template == null || !template.isValid())
-            throw new InvalidTemplateException(); // (@Doc: yes, you win, exceptions. Happy now?)
+    public void saveMonsterTemplate(int id, Template template) {
+        if (template == null) throw new NullPointerException("template");
         templates.put(id, template);
     }
 
@@ -45,9 +44,10 @@ public class MonsterServiceMemory implements MonsterService {
     @Override
     public int createMonsterTemplate() {
         int nextId = templates.keySet().stream().reduce(Integer::max).orElse(-1) + 1;
-        Template old = templates.put(nextId, new Template("New Monster", nextId, Template.MonsterRank.BASIC,
-                new Statistics(10,0,3,0,0,0), new ArrayList<>(), new ArrayList<>()));
-        assert( old == null );
+        Template newTemplate = new Template("New Monster", nextId, Template.MonsterRank.BASIC,
+                new Statistics(10,0,3,0,0,0), new ArrayList<>(), new ArrayList<>());
+        Template old = templates.put(nextId, newTemplate);
+        assert old == null;
         return nextId;
     }
 
@@ -74,8 +74,8 @@ public class MonsterServiceMemory implements MonsterService {
         pa.add(new PassiveAbility("banana go",11,new Effect("blabla")));
         List<ActiveAbility> aa = new ArrayList<>();
         aa.add(new ActiveAbility("banana crit",10,5,50,new Effect("blaCRIT")));
-        this.saveMonsterTemplate(12,new Template("GOD",12, Template.MonsterRank.BOSS,new Statistics(12,4,4,0,0,0),pa,aa));
-        this.saveMonsterTemplate(14,new Template("GOD2",14, Template.MonsterRank.BOSS,new Statistics(12,4,4,0,0,0),pa,aa));
-        this.saveMonsterTemplate(16,new Template("GOD3",16, Template.MonsterRank.BOSS,new Statistics(12,4,4,0,0,0),pa,aa));
+        this.saveMonsterTemplate(12,new Template("GOD",12, Template.MonsterRank.BOSS,new Statistics(12,4,5,1,0,0),pa,aa));
+        this.saveMonsterTemplate(14,new Template("GOD2",14, Template.MonsterRank.BOSS,new Statistics(20,5,4,0,1,0),pa,aa));
+        this.saveMonsterTemplate(16,new Template("GOD3",16, Template.MonsterRank.BOSS,new Statistics(36,4,4,0,0,1),pa,aa));
     }
 }
