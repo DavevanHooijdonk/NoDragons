@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface MonsterService {
 
-    void saveMonsterTemplate(int id,Template template);
+    void saveMonsterTemplate(int id,Template template) throws InvalidTemplateException;
     void saveMonster(int id,Monster monster);
     Template loadMonsterTemplate(int id);
     boolean deleteMonsterTemplate(int id);
@@ -23,3 +23,4 @@ public interface MonsterService {
     //Should be removed later
     void mockMonsterTemplate();
 }
+

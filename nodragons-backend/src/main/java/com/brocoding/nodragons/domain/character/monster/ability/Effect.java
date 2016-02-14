@@ -21,4 +21,8 @@ public class Effect {
     public Effect(@JsonProperty(value = "effectDescription")String effectDescription) {
         this.effectDescription = effectDescription;
     }
+
+    public boolean isValid() {
+        return true;
+    }
 }

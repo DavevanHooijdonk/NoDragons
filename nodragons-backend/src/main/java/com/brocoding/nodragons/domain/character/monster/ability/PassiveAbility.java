@@ -14,9 +14,9 @@ import lombok.Getter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PassiveAbility {
-    private final String name;
-    private final int id;
-    private final Effect effect;
+    public final String name;
+    public final int id;
+    public final Effect effect;
 
     @JsonCreator
     public PassiveAbility(@JsonProperty(value = "name") String name,
@@ -25,5 +25,10 @@ public class PassiveAbility {
         this.name = name;
         this.id = id;
         this.effect = effect;
+    }
+
+    public boolean isValid()
+    {
+        return !name.isEmpty() && effect.isValid();
     }
 }

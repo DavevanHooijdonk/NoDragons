@@ -21,7 +21,9 @@ public class MonsterServiceMemory implements MonsterService {
     private final Map<Integer, Monster> monsters = Collections.synchronizedMap(new HashMap<>());
 
     @Override
-    public void saveMonsterTemplate(int id, Template template) {
+    public void saveMonsterTemplate(int id, Template template) throws InvalidTemplateException {
+        if (template == null || !template.isValid())
+            throw new InvalidTemplateException(); // (@Doc: yes, you win, exceptions. Happy now?)
         templates.put(id, template);
     }
 

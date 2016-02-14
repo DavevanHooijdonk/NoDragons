@@ -34,4 +34,9 @@ public class Statistics {
         this.magicalResistance = magicalResistance;
         this.mentalResistance = mentalResistance;
     }
+
+    public boolean isValid()
+    {
+        return maximumHitpoints >= 0 && zoneOfControl >= 0 && movementSpeed >= 0;
+    }
 }

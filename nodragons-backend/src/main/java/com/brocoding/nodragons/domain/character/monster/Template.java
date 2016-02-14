@@ -39,6 +39,23 @@ public class Template {
         this.stats = stats;
         this.passiveAbilities = passiveAbilities;
         this.activeAbilities = activeAbilities;
-
     }
+
+    public boolean isValid()
+    {
+        boolean valid = name != null && !name.isEmpty() && stats != null && stats.isValid() &&
+                passiveAbilities != null && passiveAbilities.stream().allMatch(PassiveAbility::isValid) &&
+                activeAbilities != null && activeAbilities.stream().allMatch(ActiveAbility::isValid);
+        // Check distinctiveness of id's (QQ can't neatly use a stream for this, because Java has no tuples to use with reduce).
+        int[] ids = passiveAbilities.stream().mapToInt(ab -> ab.id).sorted().toArray();
+        for (int i = 1; i < ids.length; i++) {
+            if (ids[i-1] == ids[i]) valid = false;
+        }
+        if (!valid) return valid;
+        ids = activeAbilities.stream().mapToInt(ab -> ab.id).sorted().toArray();
+        for (int i = 1; i < ids.length; i++) {
+            if (ids[i-1] == ids[i]) valid = false;
+        }
+        return valid;
+}
 }

@@ -14,11 +14,11 @@ import lombok.Getter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ActiveAbility {
-    private final String name;
-    private final int id;
-    private final int minimumDamage;
-    private final int maximumDamage;
-    private final Effect effect;
+    public final String name;
+    public final int id;
+    public final int minimumDamage;
+    public final int maximumDamage;
+    public final Effect effect;
 
     @JsonCreator
     public ActiveAbility(@JsonProperty(value = "name") String name,
@@ -31,5 +31,9 @@ public class ActiveAbility {
         this.minimumDamage = minimumDamage;
         this.maximumDamage = maximumDamage;
         this.effect = effect;
+    }
+
+    public boolean isValid() {
+        return !name.isEmpty() && minimumDamage >= 0 && maximumDamage >= minimumDamage && effect.isValid();
     }
 }
